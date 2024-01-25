@@ -53,7 +53,7 @@ public interface MqttClientSslConfigBuilderBase<B extends MqttClientSslConfigBui
     @NotNull B privateKey(@Nullable PrivateKey privateKey);
 
     @CheckReturnValue
-    @NotNull B certificateChain(@Nullable X509Certificate[] certificateChain);
+    @NotNull B certificateChain(@Nullable Collection<@NotNull X509Certificate> certificateChain);
 
 
     /**
