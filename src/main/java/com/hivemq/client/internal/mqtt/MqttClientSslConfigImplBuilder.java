@@ -36,8 +36,8 @@ import java.security.cert.X509Certificate;
  */
 public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConfigImplBuilder<B>> {
 
-    private final @Nullable PrivateKey privateKey;
-    private final @Nullable X509Certificate[] certificateChain;
+    private @Nullable PrivateKey privateKey;
+    private @Nullable X509Certificate[] certificateChain;
     private @Nullable TrustManagerFactory trustManagerFactory;
     private @Nullable ImmutableList<String> cipherSuites;
     private @Nullable ImmutableList<String> protocols;
