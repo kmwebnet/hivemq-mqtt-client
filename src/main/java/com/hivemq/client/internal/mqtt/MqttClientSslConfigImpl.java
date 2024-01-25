@@ -25,6 +25,9 @@ import javax.net.ssl.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.security.PrivateKey;
+import java.security.cert.X509Certificate;
+
 
 /**
  * @author David Katz
