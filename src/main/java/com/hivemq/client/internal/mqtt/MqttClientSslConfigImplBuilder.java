@@ -28,6 +28,8 @@ import javax.net.ssl.TrustManagerFactory;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+import java.security.PrivateKey;
+import java.security.cert.X509Certificate;
 
 /**
  * @author Silvio Giebl
