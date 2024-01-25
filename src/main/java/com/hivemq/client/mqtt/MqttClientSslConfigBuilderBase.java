@@ -50,8 +50,11 @@ public interface MqttClientSslConfigBuilderBase<B extends MqttClientSslConfigBui
      * @return the builder.
      */
     @CheckReturnValue
-    @NotNull B privateKeyAndCertificateChain(
-            @Nullable PrivateKey privateKey, @Nullable Collection<@NotNull X509Certificate> certificateChain);
+    @NotNull B privateKey(@Nullable PrivateKey privateKey);
+
+    @CheckReturnValue
+    @NotNull B certificateChain(@Nullable X509Certificate[] certificateChain);
+
 
     /**
      * Sets the optional user defined {@link MqttClientSslConfig#getTrustManagerFactory() trust manager factory}.
