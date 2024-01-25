@@ -66,8 +66,7 @@ public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConf
     }
 
     public @NotNull B certificateChain(final @Nullable Collection<@Nullable X509Certificate> certificateChain) {
-        this.certificateChain = (certificateChain == null) ? null : ImmutableList.copyOf(certificateChain,
-                "Certificate chain");
+        this.certificateChain = certificateChain;
         return self();
     }
 
