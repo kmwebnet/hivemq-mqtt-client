@@ -84,7 +84,7 @@ public final class MqttSslInitializer {
 
         return SslContextBuilder.forClient()
                 .trustManager(sslConfig.getRawTrustManagerFactory())
-                .keyManager(sslConfig.getPrivateKey(), sslConfig.getCertificateChain())
+                .keyManager(sslConfig.getRawPrivateKey(), sslConfig.getRawCertificateChain())
                 .protocols((protocols == null) ? null : protocols.toArray(new String[0]))
                 .ciphers(sslConfig.getRawCipherSuites(), SupportedCipherSuiteFilter.INSTANCE)
                 .build();

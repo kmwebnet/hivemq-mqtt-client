@@ -48,8 +48,8 @@ public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConf
 
     MqttClientSslConfigImplBuilder(final @Nullable MqttClientSslConfigImpl sslConfig) {
         if (sslConfig != null) {
-            privateKey = sslConfig.getPrivateKey();
-            certificateChain = sslConfig.getCertificateChain();
+            privateKey = sslConfig.getRawPrivateKey();
+            certificateChain = sslConfig.getRawCertificateChain();
             trustManagerFactory = sslConfig.getRawTrustManagerFactory();
             cipherSuites = sslConfig.getRawCipherSuites();
             protocols = sslConfig.getRawProtocols();
