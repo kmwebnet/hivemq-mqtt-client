@@ -48,7 +48,8 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
             new MqttClientSslConfigImpl(null, null, null, null, (int) DEFAULT_HANDSHAKE_TIMEOUT_MS,
                     DEFAULT_HOSTNAME_VERIFIER);
 
-    private final @Nullable KeyManagerFactory keyManagerFactory;
+    private final @Nullable PrivateKey privateKey;
+    private final @Nullable X509Certificate[] certificateChain;
     private final @Nullable TrustManagerFactory trustManagerFactory;
     private final @Nullable ImmutableList<String> cipherSuites;
     private final @Nullable ImmutableList<String> protocols;
@@ -56,14 +57,16 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
     private final @Nullable HostnameVerifier hostnameVerifier;
 
     MqttClientSslConfigImpl(
-            final @Nullable KeyManagerFactory keyManagerFactory,
+            final @Nullable PrivateKey privateKey,
+            final @Nullable X509Certificate[] certificateChain,
             final @Nullable TrustManagerFactory trustManagerFactory,
             final @Nullable ImmutableList<String> cipherSuites,
             final @Nullable ImmutableList<String> protocols,
             final int handshakeTimeoutMs,
             final @Nullable HostnameVerifier hostnameVerifier) {
 
-        this.keyManagerFactory = keyManagerFactory;
+        this.privateKey = privateKey;
+        this.certificateChain = certificateChain;
         this.trustManagerFactory = trustManagerFactory;
         this.cipherSuites = cipherSuites;
         this.protocols = protocols;
@@ -72,12 +75,12 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
     }
 
     @Override
-    public @NotNull Optional<KeyManagerFactory> getKeyManagerFactory() {
-        return Optional.ofNullable(keyManagerFactory);
+    public @Nullable PrivateKey getPrivateKey() {
+        return privateKey;
     }
 
-    public @Nullable KeyManagerFactory getRawKeyManagerFactory() {
-        return keyManagerFactory;
+    public @Nullable X509Certificate[] getCertificateChain() {
+        return certificateChain;
     }
 
     @Override
