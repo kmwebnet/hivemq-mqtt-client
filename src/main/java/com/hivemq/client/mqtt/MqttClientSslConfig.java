@@ -26,6 +26,8 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.TrustManagerFactory;
 import java.util.List;
 import java.util.Optional;
+import java.security.PrivateKey;
+import java.security.cert.X509Certificate;
 
 /**
  * Configuration for a secure transport to use by {@link MqttClient MQTT clients}.
