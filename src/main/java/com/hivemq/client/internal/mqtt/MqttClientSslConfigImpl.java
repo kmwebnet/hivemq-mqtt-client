@@ -48,7 +48,7 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
     }
 
     static final @NotNull MqttClientSslConfigImpl DEFAULT =
-            new MqttClientSslConfigImpl(null, null, null, null, (int) DEFAULT_HANDSHAKE_TIMEOUT_MS,
+            new MqttClientSslConfigImpl(null, null, null, null, null, (int) DEFAULT_HANDSHAKE_TIMEOUT_MS,
                     DEFAULT_HOSTNAME_VERIFIER);
 
     private final @Nullable PrivateKey privateKey;
