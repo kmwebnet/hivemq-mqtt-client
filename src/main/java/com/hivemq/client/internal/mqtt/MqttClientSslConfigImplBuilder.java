@@ -34,7 +34,8 @@ import java.util.function.Function;
  */
 public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConfigImplBuilder<B>> {
 
-    private @Nullable KeyManagerFactory keyManagerFactory;
+    private final @Nullable PrivateKey privateKey;
+    private final @Nullable X509Certificate[] certificateChain;
     private @Nullable TrustManagerFactory trustManagerFactory;
     private @Nullable ImmutableList<String> cipherSuites;
     private @Nullable ImmutableList<String> protocols;
@@ -45,7 +46,8 @@ public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConf
 
     MqttClientSslConfigImplBuilder(final @Nullable MqttClientSslConfigImpl sslConfig) {
         if (sslConfig != null) {
-            keyManagerFactory = sslConfig.getRawKeyManagerFactory();
+            privateKey = sslConfig.getPrivateKey();
+            certificateChain = sslConfig.getCertificateChain();
             trustManagerFactory = sslConfig.getRawTrustManagerFactory();
             cipherSuites = sslConfig.getRawCipherSuites();
             protocols = sslConfig.getRawProtocols();
@@ -56,8 +58,14 @@ public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConf
 
     abstract @NotNull B self();
 
-    public @NotNull B keyManagerFactory(final @Nullable KeyManagerFactory keyManagerFactory) {
-        this.keyManagerFactory = keyManagerFactory;
+    public @NotNull B privateKey(final @Nullable PrivateKey privateKey) {
+        this.privateKey = privateKey;
+        return self();
+    }
+
+    public @NotNull B certificateChain(final @Nullable Collection<@Nullable X509Certificate> certificateChain) {
+        this.certificateChain = (certificateChain == null) ? null : ImmutableList.copyOf(certificateChain,
+                "Certificate chain");
         return self();
     }
 
@@ -91,7 +99,7 @@ public abstract class MqttClientSslConfigImplBuilder<B extends MqttClientSslConf
 
     public @NotNull MqttClientSslConfigImpl build() {
         return new MqttClientSslConfigImpl(
-                keyManagerFactory, trustManagerFactory, cipherSuites, protocols, handshakeTimeoutMs, hostnameVerifier);
+                privateKey, certificateChain, trustManagerFactory, cipherSuites, protocols, handshakeTimeoutMs, hostnameVerifier);
     }
 
     public static class Default extends MqttClientSslConfigImplBuilder<Default> implements MqttClientSslConfigBuilder {

@@ -142,7 +142,7 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
         }
         final MqttClientSslConfigImpl that = (MqttClientSslConfigImpl) o;
 
-        return Objects.equals(keyManagerFactory, that.keyManagerFactory) &&
+        return  Objects.equals(privateKey, that.privateKey) && Objects.equals(certificateChain, that.certificateChain) &&
                 Objects.equals(trustManagerFactory, that.trustManagerFactory) &&
                 Objects.equals(cipherSuites, that.cipherSuites) && Objects.equals(protocols, that.protocols) &&
                 (handshakeTimeoutMs == that.handshakeTimeoutMs) &&
@@ -151,7 +151,8 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
 
     @Override
     public int hashCode() {
-        int result = Objects.hashCode(keyManagerFactory);
+        int result = Objects.hashCode(privateKey);
+        result = 31 * result + Objects.hashCode(certificateChain);
         result = 31 * result + Objects.hashCode(trustManagerFactory);
         result = 31 * result + Objects.hashCode(cipherSuites);
         result = 31 * result + Objects.hashCode(protocols);
