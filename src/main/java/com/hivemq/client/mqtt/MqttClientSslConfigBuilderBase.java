@@ -26,6 +26,8 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.TrustManagerFactory;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
+import java.security.PrivateKey;
+import java.security.cert.X509Certificate;
 
 /**
  * Builder base for a {@link MqttClientSslConfig}.
@@ -38,14 +40,18 @@ import java.util.concurrent.TimeUnit;
 public interface MqttClientSslConfigBuilderBase<B extends MqttClientSslConfigBuilderBase<B>> {
 
     /**
-     * Sets the optional user defined {@link MqttClientSslConfig#getKeyManagerFactory() key manager factory}.
+     * Sets the optional user defined {@link MqttClientSslConfig#getPrivateKey() private key} and
+     * {@link MqttClientSslConfig#getCertificateChain() certificate chain}.
      *
-     * @param keyManagerFactory the key manager factory or <code>null</code> to remove any previously set key manager
-     *                          factory.
+     * @param privateKey       the private key or <code>null</code> to remove any previously set private key and
+     *                         certificate chain.
+     * @param certificateChain the certificate chain or <code>null</code> to remove any previously set private key and
+     *                         certificate chain.
      * @return the builder.
      */
     @CheckReturnValue
-    @NotNull B keyManagerFactory(@Nullable KeyManagerFactory keyManagerFactory);
+    @NotNull B privateKeyAndCertificateChain(
+            @Nullable PrivateKey privateKey, @Nullable Collection<@NotNull X509Certificate> certificateChain);
 
     /**
      * Sets the optional user defined {@link MqttClientSslConfig#getTrustManagerFactory() trust manager factory}.
