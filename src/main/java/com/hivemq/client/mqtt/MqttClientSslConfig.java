@@ -55,7 +55,7 @@ public interface MqttClientSslConfig {
      * @return the optional user defined {@link PrivateKey} and {@link X509Certificate certificate chain}.
      */
 
-    @NotNull Optional PrivateKey getPrivateKey();
+    @NotNull Optional <PrivateKey> getPrivateKey();
 
     @NotNull Optional<X509Certificate[]> getCertificateChain();
 
