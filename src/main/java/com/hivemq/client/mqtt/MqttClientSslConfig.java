@@ -59,7 +59,7 @@ public interface MqttClientSslConfig {
 
     @NotNull Optional <PrivateKey> getPrivateKey();
 
-    @NotNull Optional<X509Certificate[]> getCertificateChain();
+    @NotNull Optional <X509Certificate[]> getCertificateChain();
 
     /**
      * @return the optional user defined {@link TrustManagerFactory}.
