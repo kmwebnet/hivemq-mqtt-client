@@ -78,13 +78,13 @@ public class MqttClientSslConfigImpl implements MqttClientSslConfig {
     }
 
     @Override
-    public @Nullable PrivateKey getPrivateKey() {
-        return privateKey;
+    public @NotNull Optional <PrivateKey> getPrivateKey() {
+        return Optional.ofNullable(privateKey);
     }
 
     @Override
-    public @Nullable X509Certificate[] getCertificateChain() {
-        return certificateChain;
+    public @NotNull Optional <X509Certificate[]> getCertificateChain() {
+        return Optional.ofNullable(certificateChain);
     }
 
     @Override
